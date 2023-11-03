@@ -58,9 +58,13 @@ namespace ImageTest
             {
                 picResize.Image = img.toBinary(150);
             }
-            else if(comboBox1.SelectedItem.ToString() != "None")
+            else if(comboBox1.SelectedItem.ToString().Contains("Gray"))
             {
                 picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
+            }
+            else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
+            {
+                picResize.Image = img.toNegative();
             }
 
         }

@@ -263,7 +263,8 @@
             "ToBinary",
             "Gray Average method",
             "Gray Luminosity Method",
-            "Gray Single Channel Method"});
+            "Gray Single Channel Method",
+            "Negative"});
             this.comboBox1.Location = new System.Drawing.Point(442, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);

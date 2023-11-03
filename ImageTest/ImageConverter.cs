@@ -124,5 +124,28 @@ namespace ImageTest
             return output;
 
         }
+        public static Image toNegative(this Image img)
+        {
+            Bitmap output = new Bitmap(img);
+            Rectangle ret = new Rectangle(0, 0, output.Width, output.Height);
+            BitmapData data = output.LockBits(ret, System.Drawing.Imaging.ImageLockMode.ReadWrite, output.PixelFormat);
+            int bpp = Bitmap.GetPixelFormatSize(output.PixelFormat) / 8;
+            byte[] temp = new byte[data.Stride * data.Height];
+            Marshal.Copy(data.Scan0, temp, 0, temp.Length);
+
+            for (int k = 0; k < temp.Length; k += bpp)
+            {
+               
+               
+                temp[k] = (byte)(255-temp[k]);
+                temp[k + 1] = (byte)(255 - temp[k+1]);
+                temp[k + 2] = (byte)(255 - temp[k]+2);
+
+            }
+            Marshal.Copy(temp, 0, data.Scan0, temp.Length);
+            output.UnlockBits(data);
+            return output;
+
+        }
     }
 }
