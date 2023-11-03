@@ -1,0 +1,8 @@
+E:\vsprojects\ImageTest\ImageTest\bin\Debug\ImageTest.exe
+E:\vsprojects\ImageTest\ImageTest\bin\Debug\ImageTest.pdb
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.Form1.resources
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.Properties.Resources.resources
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.csproj.GenerateResource.Cache
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.exe
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.pdb
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.csprojResolveAssemblyReference.cache
