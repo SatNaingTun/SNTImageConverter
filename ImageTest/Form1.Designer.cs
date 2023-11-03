@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRRotate = new System.Windows.Forms.Button();
+            this.buttLRotate = new System.Windows.Forms.Button();
             this.txtHeight = new System.Windows.Forms.NumericUpDown();
             this.txtWidth = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,8 +45,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblResizeResolution = new System.Windows.Forms.Label();
             this.picResize = new System.Windows.Forms.PictureBox();
-            this.buttLRotate = new System.Windows.Forms.Button();
-            this.btnRRotate = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
@@ -60,6 +61,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.btnRRotate);
             this.panel1.Controls.Add(this.buttLRotate);
             this.panel1.Controls.Add(this.txtHeight);
@@ -72,8 +74,28 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(684, 49);
+            this.panel1.Size = new System.Drawing.Size(738, 49);
             this.panel1.TabIndex = 0;
+            // 
+            // btnRRotate
+            // 
+            this.btnRRotate.Image = global::ImageTest.Properties.Resources.ic_rotate_right;
+            this.btnRRotate.Location = new System.Drawing.Point(392, 12);
+            this.btnRRotate.Name = "btnRRotate";
+            this.btnRRotate.Size = new System.Drawing.Size(43, 31);
+            this.btnRRotate.TabIndex = 3;
+            this.btnRRotate.UseVisualStyleBackColor = true;
+            this.btnRRotate.Click += new System.EventHandler(this.btnRRotate_Click);
+            // 
+            // buttLRotate
+            // 
+            this.buttLRotate.Image = global::ImageTest.Properties.Resources.ic_rotate_left;
+            this.buttLRotate.Location = new System.Drawing.Point(338, 12);
+            this.buttLRotate.Name = "buttLRotate";
+            this.buttLRotate.Size = new System.Drawing.Size(48, 31);
+            this.buttLRotate.TabIndex = 3;
+            this.buttLRotate.UseVisualStyleBackColor = true;
+            this.buttLRotate.Click += new System.EventHandler(this.buttLRotate_Click);
             // 
             // txtHeight
             // 
@@ -129,7 +151,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(608, 14);
+            this.btnSave.Location = new System.Drawing.Point(652, 14);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -139,7 +161,7 @@
             // 
             // btnResize
             // 
-            this.btnResize.Location = new System.Drawing.Point(528, 14);
+            this.btnResize.Location = new System.Drawing.Point(572, 14);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(75, 23);
             this.btnResize.TabIndex = 0;
@@ -172,8 +194,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.picResize);
-            this.splitContainer1.Size = new System.Drawing.Size(684, 252);
-            this.splitContainer1.SplitterDistance = 265;
+            this.splitContainer1.Size = new System.Drawing.Size(738, 252);
+            this.splitContainer1.SplitterDistance = 285;
             this.splitContainer1.TabIndex = 1;
             // 
             // panel2
@@ -182,7 +204,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 226);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(265, 26);
+            this.panel2.Size = new System.Drawing.Size(285, 26);
             this.panel2.TabIndex = 1;
             // 
             // lblOriginalResolution
@@ -200,7 +222,7 @@
             this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picOriginal.Location = new System.Drawing.Point(0, 0);
             this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(265, 252);
+            this.picOriginal.Size = new System.Drawing.Size(285, 252);
             this.picOriginal.TabIndex = 0;
             this.picOriginal.TabStop = false;
             // 
@@ -210,7 +232,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 226);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(415, 26);
+            this.panel3.Size = new System.Drawing.Size(449, 26);
             this.panel3.TabIndex = 1;
             // 
             // lblResizeResolution
@@ -228,35 +250,30 @@
             this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picResize.Location = new System.Drawing.Point(0, 0);
             this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(415, 252);
+            this.picResize.Size = new System.Drawing.Size(449, 252);
             this.picResize.TabIndex = 0;
             this.picResize.TabStop = false;
             // 
-            // buttLRotate
+            // comboBox1
             // 
-            this.buttLRotate.Location = new System.Drawing.Point(338, 12);
-            this.buttLRotate.Name = "buttLRotate";
-            this.buttLRotate.Size = new System.Drawing.Size(75, 23);
-            this.buttLRotate.TabIndex = 3;
-            this.buttLRotate.Text = "LRotate";
-            this.buttLRotate.UseVisualStyleBackColor = true;
-            this.buttLRotate.Click += new System.EventHandler(this.buttLRotate_Click);
-            // 
-            // btnRRotate
-            // 
-            this.btnRRotate.Location = new System.Drawing.Point(419, 12);
-            this.btnRRotate.Name = "btnRRotate";
-            this.btnRRotate.Size = new System.Drawing.Size(75, 23);
-            this.btnRRotate.TabIndex = 3;
-            this.btnRRotate.Text = "RRotate";
-            this.btnRRotate.UseVisualStyleBackColor = true;
-            this.btnRRotate.Click += new System.EventHandler(this.btnRRotate_Click);
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "None",
+            "ToBinary",
+            "Gray Average method",
+            "Gray Luminosity Method",
+            "Gray Single Channel Method"});
+            this.comboBox1.Location = new System.Drawing.Point(442, 14);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 4;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 301);
+            this.ClientSize = new System.Drawing.Size(738, 301);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -298,6 +315,7 @@
         private System.Windows.Forms.Label lblResizeResolution;
         private System.Windows.Forms.Button btnRRotate;
         private System.Windows.Forms.Button buttLRotate;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

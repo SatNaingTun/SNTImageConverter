@@ -16,6 +16,7 @@ namespace ImageTest
         public Form1()
         {
             InitializeComponent();
+            comboBox1.SelectedIndex = 0;
         }
         
 
@@ -53,6 +54,14 @@ namespace ImageTest
             Image img = picOriginal.Image.toChangeSize( width, height);
             picResize.Image = img;
             lblResizeResolution.Text = String.Format("{0}*{1} pixels", width, height);
+            if (comboBox1.SelectedItem.ToString() == "ToBinary")
+            {
+                picResize.Image = img.toBinary(150);
+            }
+            else if(comboBox1.SelectedItem.ToString() != "None")
+            {
+                picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
+            }
 
         }
 
@@ -95,6 +104,7 @@ namespace ImageTest
                 picResize.Image = img;
                 lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
             }
+           
         }
 
         private void btnRRotate_Click(object sender, EventArgs e)

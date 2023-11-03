@@ -5,4 +5,3 @@ E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.Properties.Resources.r
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.csproj.GenerateResource.Cache
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.exe
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.pdb
-E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\ImageTest.csprojResolveAssemblyReference.cache

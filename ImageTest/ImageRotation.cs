@@ -30,11 +30,10 @@ namespace ImageTest
        {
            Bitmap input = new Bitmap(image);
            Bitmap output = new Bitmap(input.Height, input.Width);
-          
-           for (int y = 0; y < input.Height; y++)
+           for (int x = 0; x < input.Width; x++)
            {
-               int tx = input.Height;
-               for (int x = 0; x < input.Width; x++)
+               int tx = input.Height-1;
+               for (int y = 0; y < input.Height; y++)  
                {
                    output.SetPixel(tx, x, input.GetPixel(x, y));
                    tx--;
