@@ -79,5 +79,39 @@ namespace ImageTest
                 }
             }
         }
+
+        private void buttLRotate_Click(object sender, EventArgs e)
+        {
+            if (picResize.Image != null)
+            {
+                Image img = picResize.Image.RotateLeft90();
+                picResize.Image = img;
+                lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
+            }
+            else if(picOriginal.Image!=null)
+            {
+
+                Image img = picOriginal.Image.RotateLeft90();
+                picResize.Image = img;
+                lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
+            }
+        }
+
+        private void btnRRotate_Click(object sender, EventArgs e)
+        {
+            if (picResize.Image != null)
+            {
+                Image img = picResize.Image.RotateRight90();
+                picResize.Image = img;
+                lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
+            }
+            else if (picOriginal.Image != null)
+            {
+                Image img = picOriginal.Image.RotateRight90();
+                picResize.Image = img;
+                lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
+            }
+        
+        }
     }
 }

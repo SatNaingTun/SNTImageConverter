@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace ImageTest
 {
@@ -53,5 +54,36 @@ namespace ImageTest
         //    return output;
 
         //}
+        public static Image toBinary(this Image img,int threshold)
+        {
+            Bitmap output = new Bitmap(img);
+            Rectangle ret = new Rectangle(0, 0, output.Width, output.Height);
+            BitmapData data = output.LockBits(ret, System.Drawing.Imaging.ImageLockMode.ReadWrite, output.PixelFormat);
+            int bpp = Bitmap.GetPixelFormatSize(output.PixelFormat) / 8;
+            byte[] temp = new byte[data.Stride * data.Height];
+            Marshal.Copy(data.Scan0, temp, 0, temp.Length);
+
+            for (int k = 0; k < temp.Length; k+=bpp)
+            {
+                int averageColor = (temp[k] + temp[k + 1] + temp[k + 3]) / 3;
+                if (averageColor >= threshold)
+                {
+                    temp[k] = 255;     //Blue
+                    temp[k + 1] = 255; //Green
+                    temp[k + 2] = 255; //Red
+                }
+                else
+                {
+                    temp[k] = 255;     //Blue
+                    temp[k + 1] = 255; //Green
+                    temp[k + 2] = 255; //Red
+                }
+
+            }
+            Marshal.Copy(temp, 0, data.Scan0, temp.Length);
+            output.UnlockBits(data);
+            return output;
+
+        }
     }
 }

@@ -43,6 +43,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblResizeResolution = new System.Windows.Forms.Label();
             this.picResize = new System.Windows.Forms.PictureBox();
+            this.buttLRotate = new System.Windows.Forms.Button();
+            this.btnRRotate = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
@@ -58,6 +60,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnRRotate);
+            this.panel1.Controls.Add(this.buttLRotate);
             this.panel1.Controls.Add(this.txtHeight);
             this.panel1.Controls.Add(this.txtWidth);
             this.panel1.Controls.Add(this.label2);
@@ -68,7 +72,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(579, 49);
+            this.panel1.Size = new System.Drawing.Size(684, 49);
             this.panel1.TabIndex = 0;
             // 
             // txtHeight
@@ -125,7 +129,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(436, 14);
+            this.btnSave.Location = new System.Drawing.Point(608, 14);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -135,7 +139,7 @@
             // 
             // btnResize
             // 
-            this.btnResize.Location = new System.Drawing.Point(356, 14);
+            this.btnResize.Location = new System.Drawing.Point(528, 14);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(75, 23);
             this.btnResize.TabIndex = 0;
@@ -168,17 +172,17 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.picResize);
-            this.splitContainer1.Size = new System.Drawing.Size(579, 213);
-            this.splitContainer1.SplitterDistance = 225;
+            this.splitContainer1.Size = new System.Drawing.Size(684, 252);
+            this.splitContainer1.SplitterDistance = 265;
             this.splitContainer1.TabIndex = 1;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblOriginalResolution);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 187);
+            this.panel2.Location = new System.Drawing.Point(0, 226);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(225, 26);
+            this.panel2.Size = new System.Drawing.Size(265, 26);
             this.panel2.TabIndex = 1;
             // 
             // lblOriginalResolution
@@ -196,7 +200,7 @@
             this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picOriginal.Location = new System.Drawing.Point(0, 0);
             this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(225, 213);
+            this.picOriginal.Size = new System.Drawing.Size(265, 252);
             this.picOriginal.TabIndex = 0;
             this.picOriginal.TabStop = false;
             // 
@@ -204,9 +208,9 @@
             // 
             this.panel3.Controls.Add(this.lblResizeResolution);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 187);
+            this.panel3.Location = new System.Drawing.Point(0, 226);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(350, 26);
+            this.panel3.Size = new System.Drawing.Size(415, 26);
             this.panel3.TabIndex = 1;
             // 
             // lblResizeResolution
@@ -224,15 +228,35 @@
             this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picResize.Location = new System.Drawing.Point(0, 0);
             this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(350, 213);
+            this.picResize.Size = new System.Drawing.Size(415, 252);
             this.picResize.TabIndex = 0;
             this.picResize.TabStop = false;
+            // 
+            // buttLRotate
+            // 
+            this.buttLRotate.Location = new System.Drawing.Point(338, 12);
+            this.buttLRotate.Name = "buttLRotate";
+            this.buttLRotate.Size = new System.Drawing.Size(75, 23);
+            this.buttLRotate.TabIndex = 3;
+            this.buttLRotate.Text = "LRotate";
+            this.buttLRotate.UseVisualStyleBackColor = true;
+            this.buttLRotate.Click += new System.EventHandler(this.buttLRotate_Click);
+            // 
+            // btnRRotate
+            // 
+            this.btnRRotate.Location = new System.Drawing.Point(419, 12);
+            this.btnRRotate.Name = "btnRRotate";
+            this.btnRRotate.Size = new System.Drawing.Size(75, 23);
+            this.btnRRotate.TabIndex = 3;
+            this.btnRRotate.Text = "RRotate";
+            this.btnRRotate.UseVisualStyleBackColor = true;
+            this.btnRRotate.Click += new System.EventHandler(this.btnRRotate_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 262);
+            this.ClientSize = new System.Drawing.Size(684, 301);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
@@ -272,6 +296,8 @@
         private System.Windows.Forms.Label lblOriginalResolution;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblResizeResolution;
+        private System.Windows.Forms.Button btnRRotate;
+        private System.Windows.Forms.Button buttLRotate;
     }
 }
 
