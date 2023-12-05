@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
 
-namespace ImageTest
+namespace SNTImageConverter
 {
     public partial class Form1 : Form
     {
@@ -29,6 +29,8 @@ namespace ImageTest
             {
                 picOriginal.Image = Image.FromFile(ofd.FileName);
                 lblOriginalResolution.Text = String.Format("{0}*{1} pixels", picOriginal.Image.Width, picOriginal.Image.Height);
+                txtWidth.Value = picOriginal.Image.Width;
+                txtHeight.Value = picOriginal.Image.Height;
             }
 
         }

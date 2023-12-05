@@ -8,8 +8,8 @@
     <ProjectGuid>{99D198A8-83BC-4A31-9619-6AB0BF6C8399}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImageTest</RootNamespace>
-    <AssemblyName>ImageTest</AssemblyName>
+    <RootNamespace>SNTImageConverter</RootNamespace>
+    <AssemblyName>SNTImageConverter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>picture_photo_image_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,7 +83,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="picture_photo_image_icon.ico" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ic_rotate_left.png" />
   </ItemGroup>

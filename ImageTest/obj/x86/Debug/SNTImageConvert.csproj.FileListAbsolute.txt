@@ -1,0 +1,8 @@
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.Form1.resources
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.Properties.Resources.resources
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.csproj.GenerateResource.Cache
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.csprojResolveAssemblyReference.cache
+E:\vsprojects\ImageTest\ImageTest\bin\Debug\SNTImageConvert.exe
+E:\vsprojects\ImageTest\ImageTest\bin\Debug\SNTImageConvert.pdb
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.exe
+E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConvert.pdb

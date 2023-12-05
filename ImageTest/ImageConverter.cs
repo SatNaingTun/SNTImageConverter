@@ -7,7 +7,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace ImageTest
+namespace SNTImageConverter
 {
    public static class ImageConverter
     {

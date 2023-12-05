@@ -1,4 +1,4 @@
-﻿namespace ImageTest
+﻿namespace SNTImageConverter
 {
     partial class Form1
     {
@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnRRotate = new System.Windows.Forms.Button();
             this.buttLRotate = new System.Windows.Forms.Button();
             this.txtHeight = new System.Windows.Forms.NumericUpDown();
@@ -39,13 +41,14 @@
             this.btnResize = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.picOriginal = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblOriginalResolution = new System.Windows.Forms.Label();
-            this.picOriginal = new System.Windows.Forms.PictureBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.picResize = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblResizeResolution = new System.Windows.Forms.Label();
-            this.picResize = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
@@ -53,10 +56,12 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picResize)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -77,9 +82,25 @@
             this.panel1.Size = new System.Drawing.Size(738, 49);
             this.panel1.TabIndex = 0;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "None",
+            "ToBinary",
+            "Gray Average method",
+            "Gray Luminosity Method",
+            "Gray Single Channel Method",
+            "Negative"});
+            this.comboBox1.Location = new System.Drawing.Point(442, 14);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
             // btnRRotate
             // 
-            this.btnRRotate.Image = global::ImageTest.Properties.Resources.ic_rotate_right;
+            this.btnRRotate.Image = global::SNTImageConverter.Properties.Resources.ic_rotate_right;
             this.btnRRotate.Location = new System.Drawing.Point(392, 12);
             this.btnRRotate.Name = "btnRRotate";
             this.btnRRotate.Size = new System.Drawing.Size(43, 31);
@@ -89,7 +110,7 @@
             // 
             // buttLRotate
             // 
-            this.buttLRotate.Image = global::ImageTest.Properties.Resources.ic_rotate_left;
+            this.buttLRotate.Image = global::SNTImageConverter.Properties.Resources.ic_rotate_left;
             this.buttLRotate.Location = new System.Drawing.Point(338, 12);
             this.buttLRotate.Name = "buttLRotate";
             this.buttLRotate.Size = new System.Drawing.Size(48, 31);
@@ -101,7 +122,7 @@
             // 
             this.txtHeight.Location = new System.Drawing.Point(278, 16);
             this.txtHeight.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -118,7 +139,7 @@
             // 
             this.txtWidth.Location = new System.Drawing.Point(158, 15);
             this.txtWidth.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -187,16 +208,35 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.panel4);
             this.splitContainer1.Panel1.Controls.Add(this.panel2);
-            this.splitContainer1.Panel1.Controls.Add(this.picOriginal);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel5);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Panel2.Controls.Add(this.picResize);
             this.splitContainer1.Size = new System.Drawing.Size(738, 252);
-            this.splitContainer1.SplitterDistance = 285;
+            this.splitContainer1.SplitterDistance = 417;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.picOriginal);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(417, 226);
+            this.panel4.TabIndex = 2;
+            // 
+            // picOriginal
+            // 
+            this.picOriginal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picOriginal.Location = new System.Drawing.Point(0, 0);
+            this.picOriginal.Name = "picOriginal";
+            this.picOriginal.Size = new System.Drawing.Size(417, 226);
+            this.picOriginal.TabIndex = 0;
+            this.picOriginal.TabStop = false;
             // 
             // panel2
             // 
@@ -204,7 +244,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 226);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(285, 26);
+            this.panel2.Size = new System.Drawing.Size(417, 26);
             this.panel2.TabIndex = 1;
             // 
             // lblOriginalResolution
@@ -217,14 +257,24 @@
             this.lblOriginalResolution.TabIndex = 0;
             this.lblOriginalResolution.Text = "pixel";
             // 
-            // picOriginal
+            // panel5
             // 
-            this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picOriginal.Location = new System.Drawing.Point(0, 0);
-            this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(285, 252);
-            this.picOriginal.TabIndex = 0;
-            this.picOriginal.TabStop = false;
+            this.panel5.Controls.Add(this.picResize);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(317, 226);
+            this.panel5.TabIndex = 2;
+            // 
+            // picResize
+            // 
+            this.picResize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picResize.Location = new System.Drawing.Point(0, 0);
+            this.picResize.Name = "picResize";
+            this.picResize.Size = new System.Drawing.Size(317, 226);
+            this.picResize.TabIndex = 0;
+            this.picResize.TabStop = false;
             // 
             // panel3
             // 
@@ -232,7 +282,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 226);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(449, 26);
+            this.panel3.Size = new System.Drawing.Size(317, 26);
             this.panel3.TabIndex = 1;
             // 
             // lblResizeResolution
@@ -245,31 +295,6 @@
             this.lblResizeResolution.TabIndex = 0;
             this.lblResizeResolution.Text = "pixel";
             // 
-            // picResize
-            // 
-            this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picResize.Location = new System.Drawing.Point(0, 0);
-            this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(449, 252);
-            this.picResize.TabIndex = 0;
-            this.picResize.TabStop = false;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "None",
-            "ToBinary",
-            "Gray Average method",
-            "Gray Luminosity Method",
-            "Gray Single Channel Method",
-            "Negative"});
-            this.comboBox1.Location = new System.Drawing.Point(442, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,8 +302,9 @@
             this.ClientSize = new System.Drawing.Size(738, 301);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "SNT Image Converter";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).EndInit();
@@ -287,12 +313,14 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picOriginal)).EndInit();
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picResize)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picResize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -317,6 +345,8 @@
         private System.Windows.Forms.Button btnRRotate;
         private System.Windows.Forms.Button buttLRotate;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
     }
 }
 
