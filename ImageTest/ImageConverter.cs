@@ -173,22 +173,45 @@ namespace SNTImageConverter
 
         }
 
-        public static Image toA4Array(this Image img)
+        public static Image toA4Array(this Image img,int smallWidth,int smallHeight,int borderSize=5,int widthPadding=5,int heightPadding=5)
         {
-            Image smallImge = img.toChangeSize(4*96, 6*96);
-            smallImge = smallImge.addBorder(5, Color.Blue);
+            Image smallImage = img.toChangeSize(smallWidth, smallHeight);
+            smallImage = smallImage.addBorder(borderSize, Color.Blue);
             Bitmap a4Bitmap = new Bitmap(2480, 3508);
             //Array.Copy(smallImge, a4Bitmap, smallImge.Width);
             using (Graphics gfx = Graphics.FromImage(a4Bitmap))
             {
-                for (int w = 0; w+smallImge.Width < a4Bitmap.Width; w += smallImge.Width + 5)
-                    for (int h = 0; h+smallImge.Height < a4Bitmap.Height; h += smallImge.Height + 5)
-                gfx.DrawImage(smallImge, new Rectangle(w, h, smallImge.Width, smallImge.Height));
+                gfx.FillRectangle(new SolidBrush(Color.Wheat), new Rectangle(0, 0, a4Bitmap.Width, a4Bitmap.Height));
+                for (int w = 0; w + smallImage.Width < a4Bitmap.Width; w += smallImage.Width + widthPadding)
+                    for (int h = 0; h + smallImage.Height < a4Bitmap.Height; h += smallImage.Height + heightPadding)
+                        gfx.DrawImage(smallImage, new Rectangle(w, h, smallImage.Width, smallImage.Height));
 
               
                     //gfx.DrawImage(smallImge, new Rectangle(0,h, smallImge.Width, smallImge.Height));
             }
             return a4Bitmap;
+        }
+        public static Image addImageVertical(this Image image, Image image2, int yPadding = 5)
+        {
+            Bitmap output = new Bitmap(Math.Max(image.Width, image2.Width), image.Height + image2.Height);
+            using (Graphics gfx = Graphics.FromImage(output))
+            {
+                gfx.DrawImage(image, new Rectangle(0,0, image.Width, image.Height));
+                gfx.DrawImage(image2, new Rectangle(0, image.Height + yPadding, image2.Width, image2.Height));
+            }
+
+            return output;
+        }
+        public static Image addImageHorizontal(this Image image, Image image2, int xPadding = 5)
+        {
+            Bitmap output = new Bitmap(image.Width + image2.Width, Math.Max(image.Height, image2.Height));
+            using (Graphics gfx = Graphics.FromImage(output))
+            {
+                gfx.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height));
+                gfx.DrawImage(image2, new Rectangle(image.Width+xPadding, 0, image2.Width, image2.Height));
+            }
+
+            return output;
         }
     }
 }

@@ -20,14 +20,62 @@ namespace SNTImageConverter
         }
         
 
-        private void btnBrowse_Click(object sender, EventArgs e)
+        private void btnAddVertical_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Insert a image";
-            ofd.Filter = "JPEG Images|*.jpg|PNG Images |*.png";
+            //ofd.Filter = "Save an image";
+            ofd.Filter = @"
+                         jpg file(*.jpg)|*.jpg|
+                        jpeg file(*.jpeg)|*.jpeg|
+                        png(*.png)|*.png|
+                         Bitmap(*.bmp)|*.bmp|
+                        Tagged Image File Format(*.tiff)|*.tiff|
+                         Graphics Interchange Format(*.gif)|*.gif|
+                          Icon Format(*.ico)|*.ico";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                picOriginal.Image = Image.FromFile(ofd.FileName);
+                if (picOriginal.Image == null)
+                {
+                    picOriginal.Image = Image.FromFile(ofd.FileName);
+                    
+                }
+                else
+                {
+                    picOriginal.Image = picOriginal.Image.addImageVertical(Image.FromFile(ofd.FileName));
+                   
+                }
+                lblOriginalResolution.Text = String.Format("{0}*{1} pixels", picOriginal.Image.Width, picOriginal.Image.Height);
+                txtWidth.Value = picOriginal.Image.Width;
+                txtHeight.Value = picOriginal.Image.Height;
+            }
+
+        }
+        private void btnAddHorizontal_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Insert a image";
+            //ofd.Filter = "Save an image";
+            ofd.Filter = @"
+                         jpg file(*.jpg)|*.jpg|
+                        jpeg file(*.jpeg)|*.jpeg|
+                        png(*.png)|*.png|
+                         Bitmap(*.bmp)|*.bmp|
+                        Tagged Image File Format(*.tiff)|*.tiff|
+                         Graphics Interchange Format(*.gif)|*.gif|
+                          Icon Format(*.ico)|*.ico";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (picOriginal.Image == null)
+                {
+                    picOriginal.Image = Image.FromFile(ofd.FileName);
+
+                }
+                else
+                {
+                    picOriginal.Image = picOriginal.Image.addImageHorizontal(Image.FromFile(ofd.FileName));
+
+                }
                 lblOriginalResolution.Text = String.Format("{0}*{1} pixels", picOriginal.Image.Width, picOriginal.Image.Height);
                 txtWidth.Value = picOriginal.Image.Width;
                 txtHeight.Value = picOriginal.Image.Height;
@@ -65,33 +113,66 @@ namespace SNTImageConverter
                 {
                     picResize.Image = img.toBinary(150);
                 }
-                else if (comboBox1.SelectedItem.ToString().Contains("Gray"))
+                if (comboBox1.SelectedItem.ToString().Contains("Gray"))
                 {
                     picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
                 }
-                else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
+                 if (comboBox1.SelectedItem.ToString().Equals("Negative"))
                 {
                     picResize.Image = img.toNegative();
                 }
-                else if (comboBox1.SelectedItem.ToString().Equals("to 4x6 Array in A4 page"))
+
+                if (comboBox1.SelectedItem.ToString().Equals("to 1.5x2 Array in A4 page"))
                 {
-                    picResize.Image = img.toA4Array();
-                   
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(450, 600);
+
                 }
+                if (comboBox1.SelectedItem.ToString().Equals("to 4x6 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(1200, 1800 );
+                 
+                }
+                if (comboBox1.SelectedItem.ToString().Equals("to 3x2 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(900, 600,5,20,10);
+
+                }
+                if (comboBox1.SelectedItem.ToString().Equals("to 3x4 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(900, 1200, 5, 20, 10);
+
+                }
+                if (comboBox1.SelectedItem.ToString().Equals("to 4x3 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(1200, 900, 5, 20, 10);
+
+                }
+                
                 lblResizeResolution.Text = String.Format("{0}*{1} pixels", picResize.Image.Width, picResize.Image.Height);
             }
         }
+        //private int  inch2Pixel(double 
+      
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Save an image";
             sfd.Filter = @"
-                        Joint Photographic Expert Group(*.jpeg)|*.jpeg|
+                             
+
+                        Joint Photographic Expert Group(*.jpg)|*.jpg|
                         Portable Network Graphics(*.png)|*.png|
-                         Bitmap(*.bmp)|*.bmp|
+                        
                         Tagged Image File Format(*.tiff)|*.tiff|
                          Graphics Interchange Format(*.gif)|*.gif|
+                            Bitmap(*.bmp)|*.bmp|
                           Icon Format(*.ico)|*.ico";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
@@ -99,12 +180,14 @@ namespace SNTImageConverter
                 {
                     switch (sfd.FilterIndex)
                     {
-                        case 1: picResize.Image.Save(filelocation, ImageFormat.Bmp); break;
-                        case 2: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
-                        case 3: picResize.Image.Save(filelocation, ImageFormat.Png); break;
-                        case 4: picResize.Image.Save(filelocation, ImageFormat.Tiff); break;
-                        case 5: picResize.Image.Save(filelocation, ImageFormat.Gif); break;
-                        case 6: picResize.Image.Save(filelocation, ImageFormat.Icon); break;
+                        
+                        //case 1: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
+                        case 0: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
+                        case 1: picResize.Image.Save(filelocation, ImageFormat.Png); break;
+                        case 2: picResize.Image.Save(filelocation, ImageFormat.Tiff); break;
+                        case 3: picResize.Image.Save(filelocation, ImageFormat.Gif); break;
+                        case 4: picResize.Image.Save(filelocation, ImageFormat.Bmp); break;
+                        case 5: picResize.Image.Save(filelocation, ImageFormat.Icon); break;
                     }
                 }
               
@@ -145,5 +228,29 @@ namespace SNTImageConverter
             }
         
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (picResize.Image != null)
+            {
+                ImagePrintDocument pd = new ImagePrintDocument(picResize.Image);
+                PrintPreviewDialog dialog = new PrintPreviewDialog();
+               dialog.Document = pd;
+               
+                //dialog.Show();
+                dialog.Show();
+                
+                
+            }
+           
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            picOriginal.Image = null;
+            picResize.Image = null;
+        }
+
+       
     }
 }

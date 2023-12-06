@@ -57,6 +57,9 @@
     </Compile>
     <Compile Include="ImageConverter.cs" />
     <Compile Include="ImageFlip.cs" />
+    <Compile Include="ImagePrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ImageRotation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageConverterForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnRRotate = new System.Windows.Forms.Button();
             this.buttLRotate = new System.Windows.Forms.Button();
@@ -39,7 +41,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnResize = new System.Windows.Forms.Button();
-            this.btnBrowse = new System.Windows.Forms.Button();
+            this.btnAddHorizontal = new System.Windows.Forms.Button();
+            this.btnAddVertical = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panel4 = new System.Windows.Forms.Panel();
             this.picOriginal = new System.Windows.Forms.PictureBox();
@@ -66,6 +69,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnReset);
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.btnRRotate);
             this.panel1.Controls.Add(this.buttLRotate);
@@ -75,12 +80,34 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnResize);
-            this.panel1.Controls.Add(this.btnBrowse);
+            this.panel1.Controls.Add(this.btnAddHorizontal);
+            this.panel1.Controls.Add(this.btnAddVertical);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(738, 49);
+            this.panel1.Size = new System.Drawing.Size(1036, 49);
             this.panel1.TabIndex = 0;
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(207, 12);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 6;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(919, 15);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // comboBox1
             // 
@@ -93,8 +120,12 @@
             "Gray Luminosity Method",
             "Gray Single Channel Method",
             "Negative",
+            "to 1.5x2 Array in A4 page",
+            "to 3x2 Array in A4 page",
+            "to 3x4 Array in A4 page",
+            "to 4x3 Array in A4 page",
             "to 4x6 Array in A4 page"});
-            this.comboBox1.Location = new System.Drawing.Point(442, 14);
+            this.comboBox1.Location = new System.Drawing.Point(628, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 4;
@@ -102,7 +133,7 @@
             // btnRRotate
             // 
             this.btnRRotate.Image = global::SNTImageConverter.Properties.Resources.ic_rotate_right;
-            this.btnRRotate.Location = new System.Drawing.Point(392, 12);
+            this.btnRRotate.Location = new System.Drawing.Point(578, 12);
             this.btnRRotate.Name = "btnRRotate";
             this.btnRRotate.Size = new System.Drawing.Size(43, 31);
             this.btnRRotate.TabIndex = 3;
@@ -112,7 +143,7 @@
             // buttLRotate
             // 
             this.buttLRotate.Image = global::SNTImageConverter.Properties.Resources.ic_rotate_left;
-            this.buttLRotate.Location = new System.Drawing.Point(338, 12);
+            this.buttLRotate.Location = new System.Drawing.Point(524, 12);
             this.buttLRotate.Name = "buttLRotate";
             this.buttLRotate.Size = new System.Drawing.Size(48, 31);
             this.buttLRotate.TabIndex = 3;
@@ -121,7 +152,7 @@
             // 
             // txtHeight
             // 
-            this.txtHeight.Location = new System.Drawing.Point(278, 16);
+            this.txtHeight.Location = new System.Drawing.Point(464, 16);
             this.txtHeight.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -138,7 +169,7 @@
             // 
             // txtWidth
             // 
-            this.txtWidth.Location = new System.Drawing.Point(158, 15);
+            this.txtWidth.Location = new System.Drawing.Point(344, 15);
             this.txtWidth.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -156,7 +187,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(233, 19);
+            this.label2.Location = new System.Drawing.Point(419, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 1;
@@ -165,7 +196,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(116, 19);
+            this.label1.Location = new System.Drawing.Point(302, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -173,7 +204,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(652, 14);
+            this.btnSave.Location = new System.Drawing.Point(838, 14);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 0;
@@ -183,7 +214,7 @@
             // 
             // btnResize
             // 
-            this.btnResize.Location = new System.Drawing.Point(572, 14);
+            this.btnResize.Location = new System.Drawing.Point(758, 14);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(75, 23);
             this.btnResize.TabIndex = 0;
@@ -191,15 +222,25 @@
             this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnConvert_Click);
             // 
-            // btnBrowse
+            // btnAddHorizontal
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(13, 13);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowse.TabIndex = 0;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            this.btnAddHorizontal.Location = new System.Drawing.Point(94, 13);
+            this.btnAddHorizontal.Name = "btnAddHorizontal";
+            this.btnAddHorizontal.Size = new System.Drawing.Size(89, 23);
+            this.btnAddHorizontal.TabIndex = 0;
+            this.btnAddHorizontal.Text = "Add Horizontal";
+            this.btnAddHorizontal.UseVisualStyleBackColor = true;
+            this.btnAddHorizontal.Click += new System.EventHandler(this.btnAddHorizontal_Click);
+            // 
+            // btnAddVertical
+            // 
+            this.btnAddVertical.Location = new System.Drawing.Point(13, 13);
+            this.btnAddVertical.Name = "btnAddVertical";
+            this.btnAddVertical.Size = new System.Drawing.Size(75, 23);
+            this.btnAddVertical.TabIndex = 0;
+            this.btnAddVertical.Text = "Add Vertical";
+            this.btnAddVertical.UseVisualStyleBackColor = true;
+            this.btnAddVertical.Click += new System.EventHandler(this.btnAddVertical_Click);
             // 
             // splitContainer1
             // 
@@ -216,8 +257,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel5);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Size = new System.Drawing.Size(738, 252);
-            this.splitContainer1.SplitterDistance = 417;
+            this.splitContainer1.Size = new System.Drawing.Size(1036, 252);
+            this.splitContainer1.SplitterDistance = 584;
             this.splitContainer1.TabIndex = 1;
             // 
             // panel4
@@ -226,7 +267,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(417, 226);
+            this.panel4.Size = new System.Drawing.Size(584, 226);
             this.panel4.TabIndex = 2;
             // 
             // picOriginal
@@ -235,7 +276,8 @@
             this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picOriginal.Location = new System.Drawing.Point(0, 0);
             this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(417, 226);
+            this.picOriginal.Size = new System.Drawing.Size(584, 226);
+            this.picOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picOriginal.TabIndex = 0;
             this.picOriginal.TabStop = false;
             // 
@@ -245,7 +287,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 226);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(417, 26);
+            this.panel2.Size = new System.Drawing.Size(584, 26);
             this.panel2.TabIndex = 1;
             // 
             // lblOriginalResolution
@@ -264,7 +306,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(317, 226);
+            this.panel5.Size = new System.Drawing.Size(448, 226);
             this.panel5.TabIndex = 2;
             // 
             // picResize
@@ -273,7 +315,7 @@
             this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picResize.Location = new System.Drawing.Point(0, 0);
             this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(317, 226);
+            this.picResize.Size = new System.Drawing.Size(448, 226);
             this.picResize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picResize.TabIndex = 0;
             this.picResize.TabStop = false;
@@ -284,7 +326,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 226);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(317, 26);
+            this.panel3.Size = new System.Drawing.Size(448, 26);
             this.panel3.TabIndex = 1;
             // 
             // lblResizeResolution
@@ -301,7 +343,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 301);
+            this.ClientSize = new System.Drawing.Size(1036, 301);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -336,7 +378,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnResize;
-        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Button btnAddVertical;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PictureBox picOriginal;
         private System.Windows.Forms.PictureBox picResize;
@@ -349,6 +391,9 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnAddHorizontal;
     }
 }
 
