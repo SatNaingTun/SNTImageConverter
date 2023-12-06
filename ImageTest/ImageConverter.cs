@@ -147,5 +147,48 @@ namespace SNTImageConverter
             return output;
 
         }
+        public static Image addBorder(this Image img,int borderSize,Color borderColor)
+        {
+            Bitmap output = new Bitmap(img.Width,img.Height);
+            //using (Graphics gfx = Graphics.FromImage(output))
+            //{
+            //    using (Brush brush = new SolidBrush(borderColor))
+            //    {
+            //        gfx.FillRectangle(brush, 0, 0, img.Width-3, img.Height-2);
+            //    }
+            //    gfx.DrawImage(img, new Rectangle(borderSize, borderSize, img.Width, img.Height));
+            //}
+
+            //return output;
+            using (Graphics gfx = Graphics.FromImage(output))
+            {
+                using (Pen pen=new Pen(borderColor,borderSize))
+                {
+                    gfx.DrawRectangle(pen,new Rectangle(0,0,img.Width,img.Height));
+                }
+                gfx.DrawImage(img, new Rectangle(borderSize, borderSize, img.Width-borderSize, img.Height-borderSize));
+            }
+
+            return output;
+
+        }
+
+        public static Image toA4Array(this Image img)
+        {
+            Image smallImge = img.toChangeSize(4*96, 6*96);
+            smallImge = smallImge.addBorder(5, Color.Blue);
+            Bitmap a4Bitmap = new Bitmap(2480, 3508);
+            //Array.Copy(smallImge, a4Bitmap, smallImge.Width);
+            using (Graphics gfx = Graphics.FromImage(a4Bitmap))
+            {
+                for (int w = 0; w+smallImge.Width < a4Bitmap.Width; w += smallImge.Width + 5)
+                    for (int h = 0; h+smallImge.Height < a4Bitmap.Height; h += smallImge.Height + 5)
+                gfx.DrawImage(smallImge, new Rectangle(w, h, smallImge.Width, smallImge.Height));
+
+              
+                    //gfx.DrawImage(smallImge, new Rectangle(0,h, smallImge.Width, smallImge.Height));
+            }
+            return a4Bitmap;
+        }
     }
 }

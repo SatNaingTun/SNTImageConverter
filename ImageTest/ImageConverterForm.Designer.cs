@@ -1,6 +1,6 @@
 ﻿namespace SNTImageConverter
 {
-    partial class Form1
+    partial class ImageConverterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageConverterForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnRRotate = new System.Windows.Forms.Button();
@@ -92,7 +92,8 @@
             "Gray Average method",
             "Gray Luminosity Method",
             "Gray Single Channel Method",
-            "Negative"});
+            "Negative",
+            "to 4x6 Array in A4 page"});
             this.comboBox1.Location = new System.Drawing.Point(442, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -273,6 +274,7 @@
             this.picResize.Location = new System.Drawing.Point(0, 0);
             this.picResize.Name = "picResize";
             this.picResize.Size = new System.Drawing.Size(317, 226);
+            this.picResize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picResize.TabIndex = 0;
             this.picResize.TabStop = false;
             // 
@@ -295,7 +297,7 @@
             this.lblResizeResolution.TabIndex = 0;
             this.lblResizeResolution.Text = "pixel";
             // 
-            // Form1
+            // ImageConverterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -303,7 +305,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "ImageConverterForm";
             this.Text = "SNT Image Converter";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

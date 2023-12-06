@@ -11,9 +11,9 @@ using System.Drawing.Imaging;
 
 namespace SNTImageConverter
 {
-    public partial class Form1 : Form
+    public partial class ImageConverterForm : Form
     {
-        public Form1()
+        public ImageConverterForm()
         {
             InitializeComponent();
             comboBox1.SelectedIndex = 0;
@@ -51,24 +51,35 @@ namespace SNTImageConverter
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            int width = Convert.ToInt32(txtWidth.Value);
-            int height = Convert.ToInt32(txtHeight.Value);
-            Image img = picOriginal.Image.toChangeSize( width, height);
-            picResize.Image = img;
-            lblResizeResolution.Text = String.Format("{0}*{1} pixels", width, height);
-            if (comboBox1.SelectedItem.ToString() == "ToBinary")
+            if (picOriginal.Image != null)
             {
-                picResize.Image = img.toBinary(150);
-            }
-            else if(comboBox1.SelectedItem.ToString().Contains("Gray"))
-            {
-                picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
-            }
-            else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
-            {
-                picResize.Image = img.toNegative();
-            }
+                int width = Convert.ToInt32(txtWidth.Value);
+                int height = Convert.ToInt32(txtHeight.Value);
 
+                Image img = picOriginal.Image.toChangeSize(width, height);
+                picResize.Image = img;
+               
+
+               
+                if (comboBox1.SelectedItem.ToString() == "ToBinary")
+                {
+                    picResize.Image = img.toBinary(150);
+                }
+                else if (comboBox1.SelectedItem.ToString().Contains("Gray"))
+                {
+                    picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
+                }
+                else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
+                {
+                    picResize.Image = img.toNegative();
+                }
+                else if (comboBox1.SelectedItem.ToString().Equals("to 4x6 Array in A4 page"))
+                {
+                    picResize.Image = img.toA4Array();
+                   
+                }
+                lblResizeResolution.Text = String.Format("{0}*{1} pixels", picResize.Image.Width, picResize.Image.Height);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -80,18 +91,23 @@ namespace SNTImageConverter
                         Portable Network Graphics(*.png)|*.png|
                          Bitmap(*.bmp)|*.bmp|
                         Tagged Image File Format(*.tiff)|*.tiff|
-                         Graphics Interchange Format(*.gif)|*.gif";
+                         Graphics Interchange Format(*.gif)|*.gif|
+                          Icon Format(*.ico)|*.ico";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                FileStream filelocation = (FileStream)sfd.OpenFile();
-                switch (sfd.FilterIndex)
+                using (FileStream filelocation = (FileStream)sfd.OpenFile())
                 {
-                    case 1: picResize.Image.Save(filelocation, ImageFormat.Bmp); break;
-                    case 2: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
-                    case 3: picResize.Image.Save(filelocation, ImageFormat.Png); break;
-                    case 4: picResize.Image.Save(filelocation, ImageFormat.Tiff); break;
-                    case 5: picResize.Image.Save(filelocation, ImageFormat.Gif); break;
+                    switch (sfd.FilterIndex)
+                    {
+                        case 1: picResize.Image.Save(filelocation, ImageFormat.Bmp); break;
+                        case 2: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
+                        case 3: picResize.Image.Save(filelocation, ImageFormat.Png); break;
+                        case 4: picResize.Image.Save(filelocation, ImageFormat.Tiff); break;
+                        case 5: picResize.Image.Save(filelocation, ImageFormat.Gif); break;
+                        case 6: picResize.Image.Save(filelocation, ImageFormat.Icon); break;
+                    }
                 }
+              
             }
         }
 
