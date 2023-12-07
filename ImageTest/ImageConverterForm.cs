@@ -16,7 +16,48 @@ namespace SNTImageConverter
         public ImageConverterForm()
         {
             InitializeComponent();
-            comboBox1.SelectedIndex = 0;
+           
+        }
+        public ImageConverterForm(string[] args)
+        {
+            InitializeComponent();
+            foreach (string fileName in args)
+            {
+                if (isValidFile(fileName))
+                {
+                    if (picOriginal.Image == null)
+                    {
+                        picOriginal.Image = Image.FromFile(fileName);
+
+                    }
+                    else
+                    {
+                        picOriginal.Image = picOriginal.Image.addImageHorizontal(Image.FromFile(fileName));
+
+                    }
+                }
+            }
+        }
+        private bool isValidFile(string fileName)
+        {
+            
+                if (File.Exists(fileName))
+                {
+                    FileInfo fileInfo = new FileInfo(fileName);
+
+                    switch (fileInfo.Extension)
+                    {
+                        case ".jpg":return true;
+                        case ".jpeg": return true;
+                        case ".png": return true;
+                        case ".bmp": return true;
+                        case ".tiff": return true;
+                        case ".gif": return true;
+                        case ".ico": return true;
+                        default: return false;
+                    }   
+                 }
+                return false;
         }
         
 
