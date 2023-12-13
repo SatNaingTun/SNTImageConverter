@@ -7,7 +7,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
-namespace SNTImageConverter
+namespace SNTImageConverter.Function
 {
    public static class ImageConverter
     {
@@ -26,18 +26,19 @@ namespace SNTImageConverter
         }
         public static Image toChangeSize(this Image image, int width, int height)
         {
-            Bitmap input = new Bitmap(image);
-            Bitmap output = new Bitmap(width, height);
+            //Bitmap input = new Bitmap(image);
+            //Bitmap output = new Bitmap(width, height);
 
-            double tx = input.Width / (double)width;
-            double ty = input.Height / (double)height;
-            for (int y = 0; y < height; y++)
-                for (int x = 0; x < width; x++)
-                {
-                    int px = (int)Math.Floor(x * tx);
-                    int py = (int)Math.Floor(y * ty);
-                    output.SetPixel(x, y, input.GetPixel(px, py));
-                }
+            //double tx = input.Width / (double)width;
+            //double ty = input.Height / (double)height;
+            //for (int y = 0; y < height; y++)
+            //    for (int x = 0; x < width; x++)
+            //    {
+            //        int px = (int)Math.Floor(x * tx);
+            //        int py = (int)Math.Floor(y * ty);
+            //        output.SetPixel(x, y, input.GetPixel(px, py));
+            //    }
+            Bitmap output = new Bitmap(image, width, height);
             return output;
         }
         //public static Image Contrast(this Image img, double contrast)
@@ -193,14 +194,18 @@ namespace SNTImageConverter
         }
         public static Image addImageVertical(this Image image, Image image2, int yPadding = 5)
         {
-            Bitmap output = new Bitmap(Math.Max(image.Width, image2.Width), image.Height + image2.Height);
-            using (Graphics gfx = Graphics.FromImage(output))
+            if (image2 != null)
             {
-                gfx.DrawImage(image, new Rectangle(0,0, image.Width, image.Height));
-                gfx.DrawImage(image2, new Rectangle(0, image.Height + yPadding, image2.Width, image2.Height));
-            }
+                Bitmap output = new Bitmap(Math.Max(image.Width, image2.Width), image.Height + image2.Height);
+                using (Graphics gfx = Graphics.FromImage(output))
+                {
+                    gfx.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height));
+                    gfx.DrawImage(image2, new Rectangle(0, image.Height + yPadding, image2.Width, image2.Height));
+                }
 
-            return output;
+                return output;
+            }
+            return image;
         }
         public static Image addImageHorizontal(this Image image, Image image2, int xPadding = 5)
         {

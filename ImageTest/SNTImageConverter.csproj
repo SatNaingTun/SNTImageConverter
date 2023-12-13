@@ -49,18 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Function\ImageCompare.cs" />
+    <Compile Include="Function\MyWindow.cs" />
+    <Compile Include="Function\ScreenCapture.cs" />
+    <Compile Include="Function\CppScreenCapture.cs" />
     <Compile Include="ImageConverterForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ImageConverterForm.Designer.cs">
       <DependentUpon>ImageConverterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageConverter.cs" />
-    <Compile Include="ImageFlip.cs" />
-    <Compile Include="ImagePrintDocument.cs">
+    <Compile Include="Function\ImageConverter.cs" />
+    <Compile Include="Function\ImageFlip.cs" />
+    <Compile Include="Function\ImagePrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ImageRotation.cs" />
+    <Compile Include="Function\ImageRotation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ImageConverterForm.resx">

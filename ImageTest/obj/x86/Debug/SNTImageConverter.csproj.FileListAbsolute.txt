@@ -6,3 +6,11 @@ E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConverter.exe
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConverter.pdb
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConverter.ImageConverterForm.resources
 E:\vsprojects\ImageTest\ImageTest\obj\x86\Debug\SNTImageConverter.csprojResolveAssemblyReference.cache
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.exe
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.pdb
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.csprojResolveAssemblyReference.cache
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.ImageConverterForm.resources
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.Properties.Resources.resources
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.csproj.GenerateResource.Cache
+E:\vsprojects\SNT_Image_Converter\ImageTest\bin\Debug\SNTImageConverter.exe
+E:\vsprojects\SNT_Image_Converter\ImageTest\bin\Debug\SNTImageConverter.pdb

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
+using SNTImageConverter.Function;
 
 namespace SNTImageConverter
 {
@@ -16,6 +17,7 @@ namespace SNTImageConverter
         public ImageConverterForm()
         {
             InitializeComponent();
+          
            
         }
         public ImageConverterForm(string[] args)
@@ -36,6 +38,7 @@ namespace SNTImageConverter
 
                     }
                 }
+               
             }
         }
         private bool isValidFile(string fileName)
@@ -67,6 +70,7 @@ namespace SNTImageConverter
             ofd.Title = "Insert a image";
             //ofd.Filter = "Save an image";
             ofd.Filter = @"
+                       (*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico)|*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico|          
                          jpg file(*.jpg)|*.jpg|
                         jpeg file(*.jpeg)|*.jpeg|
                         png(*.png)|*.png|
@@ -79,26 +83,48 @@ namespace SNTImageConverter
                 if (picOriginal.Image == null)
                 {
                     picOriginal.Image = Image.FromFile(ofd.FileName);
-                    
+
                 }
                 else
                 {
                     picOriginal.Image = picOriginal.Image.addImageVertical(Image.FromFile(ofd.FileName));
-                   
+
                 }
+                  
                 lblOriginalResolution.Text = String.Format("{0}*{1} pixels", picOriginal.Image.Width, picOriginal.Image.Height);
                 txtWidth.Value = picOriginal.Image.Width;
                 txtHeight.Value = picOriginal.Image.Height;
             }
 
         }
-        private void btnAddHorizontal_Click(object sender, EventArgs e)
+        private Image getImage()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Insert a image";
             //ofd.Filter = "Save an image";
             ofd.Filter = @"
-                         jpg file(*.jpg)|*.jpg|
+                         (*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico)|*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico|
+                        jpg file(*.jpg)|*.jpg|
+                        jpeg file(*.jpeg)|*.jpeg|
+                        png(*.png)|*.png|
+                         Bitmap(*.bmp)|*.bmp|
+                        Tagged Image File Format(*.tiff)|*.tiff|
+                         Graphics Interchange Format(*.gif)|*.gif|
+                          Icon Format(*.ico)|*.ico";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                return Image.FromFile(ofd.FileName);
+            }
+
+            return null;
+        }
+        private void btnAddHorizontal_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Insert a image";
+            //ofd.Filter = "Save an image";
+            ofd.Filter = @"(*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico)|*.jpg;*.jpeg;*.png;*.bmp;*.tiff;*.gif;*.ico|
+                             jpg file(*.jpg)|*.jpg|
                         jpeg file(*.jpeg)|*.jpeg|
                         png(*.png)|*.png|
                          Bitmap(*.bmp)|*.bmp|
@@ -147,47 +173,50 @@ namespace SNTImageConverter
 
                 Image img = picOriginal.Image.toChangeSize(width, height);
                 picResize.Image = img;
-               
 
+                if (comboBox1.SelectedItem == null)
+                {
+                    picResize.Image = img;
+                }
                
-                if (comboBox1.SelectedItem.ToString() == "ToBinary")
+               else if (comboBox1.SelectedItem.ToString() == "ToBinary")
                 {
                     picResize.Image = img.toBinary(150);
                 }
-                if (comboBox1.SelectedItem.ToString().Contains("Gray"))
+               else if (comboBox1.SelectedItem.ToString().Contains("Gray"))
                 {
                     picResize.Image = img.toGrayScale(comboBox1.SelectedItem.ToString());
                 }
-                 if (comboBox1.SelectedItem.ToString().Equals("Negative"))
+               else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
                 {
                     picResize.Image = img.toNegative();
                 }
 
-                if (comboBox1.SelectedItem.ToString().Equals("to 1.5x2 Array in A4 page"))
+              else  if (comboBox1.SelectedItem.ToString().Equals("to 1.5x2 Array in A4 page"))
                 {
                     //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
                     picResize.Image = img.toA4Array(450, 600);
 
                 }
-                if (comboBox1.SelectedItem.ToString().Equals("to 4x6 Array in A4 page"))
+               else if (comboBox1.SelectedItem.ToString().Equals("to 4x6 Array in A4 page"))
                 {
                     //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
                     picResize.Image = img.toA4Array(1200, 1800 );
                  
                 }
-                if (comboBox1.SelectedItem.ToString().Equals("to 3x2 Array in A4 page"))
+               else if (comboBox1.SelectedItem.ToString().Equals("to 3x2 Array in A4 page"))
                 {
                     //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
                     picResize.Image = img.toA4Array(900, 600,5,20,10);
 
                 }
-                if (comboBox1.SelectedItem.ToString().Equals("to 3x4 Array in A4 page"))
+               else if (comboBox1.SelectedItem.ToString().Equals("to 3x4 Array in A4 page"))
                 {
                     //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
                     picResize.Image = img.toA4Array(900, 1200, 5, 20, 10);
 
                 }
-                if (comboBox1.SelectedItem.ToString().Equals("to 4x3 Array in A4 page"))
+               else if (comboBox1.SelectedItem.ToString().Equals("to 4x3 Array in A4 page"))
                 {
                     //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
                     picResize.Image = img.toA4Array(1200, 900, 5, 20, 10);
@@ -266,7 +295,9 @@ namespace SNTImageConverter
                 Image img = picOriginal.Image.RotateRight90();
                 picResize.Image = img;
                 lblResizeResolution.Text = String.Format("{0}*{1} pixels", img.Width, img.Height);
+               
             }
+            
         
         }
 
@@ -290,7 +321,39 @@ namespace SNTImageConverter
         {
             picOriginal.Image = null;
             picResize.Image = null;
+            //ScreenCapture screen=new ScreenCapture();
+            //picOriginal.Image = screen.captureScreen();
         }
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            picOriginal.Refresh();
+        }
+
+        private void screenShot_Click(object sender, EventArgs e)
+        {
+            //ScreenCapture screen = new ScreenCapture();
+            //picOriginal.Image = screen.getActiveWindow();
+            
+            //foreach (string name in MyWindow.getAllProcessName())
+            //{
+            //    MessageBox.Show(name);
+            //    if (picOriginal.Image == null)
+            //        picOriginal.Image = MyWindow.getImageByProcessName(name);
+            //    else
+            //       picOriginal.Image= picOriginal.Image.addImageVertical(MyWindow.getImageByProcessName(name));
+            //}
+
+            ScreenCapture screen = new ScreenCapture();
+
+            if (picOriginal.Image == null)
+            {
+                picOriginal.Image = screen.captureScreen();
+            }
+            else
+                picOriginal.Image = picOriginal.Image.addImageVertical(screen.captureScreen());
+        }
+        
 
        
     }
