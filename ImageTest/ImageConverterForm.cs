@@ -150,19 +150,7 @@ namespace SNTImageConverter
 
         }
         
-        private Image CompressImageQuality(Image img, int qty)
-        {
-            var jpgEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
-               EncoderParameters encoderParms=new EncoderParameters(1);
-            encoderParms.Param[0]=new EncoderParameter(System.Drawing.Imaging.Encoder.Quality,qty);
-            var ms=new MemoryStream();
-            img.Save(ms,jpgEncoder,encoderParms);
-            byte[] imgByte=ms.ToArray();
-            ms=new MemoryStream(imgByte);
-            Image outputImg=Image.FromStream(ms,true);
-            return outputImg;
-           
-        }
+       
 
         private void btnConvert_Click(object sender, EventArgs e)
         {
@@ -174,14 +162,14 @@ namespace SNTImageConverter
                 Image img = picOriginal.Image.toChangeSize(width, height);
                 picResize.Image = img;
 
-                if (comboBox1.SelectedItem == null)
+                if (comboBox1.SelectedItem == null || comboBox1.SelectedItem.ToString() == "None")
                 {
                     picResize.Image = img;
                 }
                
                else if (comboBox1.SelectedItem.ToString() == "ToBinary")
                 {
-                    picResize.Image = img.toBinary(150);
+                    picResize.Image = img.toBinary(180);
                 }
                else if (comboBox1.SelectedItem.ToString().Contains("Gray"))
                 {
@@ -190,6 +178,18 @@ namespace SNTImageConverter
                else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
                 {
                     picResize.Image = img.toNegative();
+                }
+                else if (comboBox1.SelectedItem.ToString().Equals("to 1x1 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(300, 300);
+
+                }
+                else if (comboBox1.SelectedItem.ToString().Equals("to 1x1.5 Array in A4 page"))
+                {
+                    //picResize.Image = img.toA4Array(4 * 96, 6 * 96);
+                    picResize.Image = img.toA4Array(300, 450);
+
                 }
 
               else  if (comboBox1.SelectedItem.ToString().Equals("to 1.5x2 Array in A4 page"))
@@ -246,11 +246,13 @@ namespace SNTImageConverter
                           Icon Format(*.ico)|*.ico";
             if (sfd.ShowDialog() == DialogResult.OK)
             {
+                if (picResize.Image == null) picResize.Image = picOriginal.Image;
+
                 using (FileStream filelocation = (FileStream)sfd.OpenFile())
                 {
                     switch (sfd.FilterIndex)
                     {
-                        
+                       
                         //case 1: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
                         case 0: picResize.Image.Save(filelocation, ImageFormat.Jpeg); break;
                         case 1: picResize.Image.Save(filelocation, ImageFormat.Png); break;
@@ -334,15 +336,20 @@ namespace SNTImageConverter
         {
             //ScreenCapture screen = new ScreenCapture();
             //picOriginal.Image = screen.getActiveWindow();
-            
+            //CppScreenCapture sc = new CppScreenCapture();
             //foreach (string name in MyWindow.getAllProcessName())
             //{
             //    MessageBox.Show(name);
             //    if (picOriginal.Image == null)
-            //        picOriginal.Image = MyWindow.getImageByProcessName(name);
+            //        picOriginal.Image = sc.CaptureApplication(name);
             //    else
-            //       picOriginal.Image= picOriginal.Image.addImageVertical(MyWindow.getImageByProcessName(name));
+            //        picOriginal.Image = picOriginal.Image.addImageVertical(sc.CaptureApplication(name));
             //}
+
+            //if (picOriginal.Image == null)
+            //    picOriginal.Image = sc.CaptureApplication("SMS.UI");
+            //else
+            //    picOriginal.Image = picOriginal.Image.addImageVertical(sc.CaptureApplication("SMS.UI"));
 
             ScreenCapture screen = new ScreenCapture();
 
@@ -352,6 +359,8 @@ namespace SNTImageConverter
             }
             else
                 picOriginal.Image = picOriginal.Image.addImageVertical(screen.captureScreen());
+
+            
         }
         
 

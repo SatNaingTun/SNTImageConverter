@@ -21,15 +21,17 @@ namespace SNTImageConverter.Function
                 if (process.MainWindowHandle != IntPtr.Zero)
                 {
                     myProcessNames.Add(process.ProcessName);
+
+                   
                 }
             }
             return myProcessNames.ToArray();
         }
-        public static IntPtr getWindowByProcessName(string name)
-        {
+        //public static IntPtr getWindowByProcessName(string name)
+        //{
            
-            return Process.GetProcessesByName(name)[0].MainWindowHandle;
-        }
+        //    return Process.GetProcessesByName(name)[0].MainWindowHandle;
+        //}
 
         public static Image getImageByProcessName(string name)
         {
@@ -38,13 +40,14 @@ namespace SNTImageConverter.Function
                 if(string.IsNullOrEmpty(name))
                     return null;
 
-                if (getWindowByProcessName(name) != IntPtr.Zero)
-                {
-                    return CppScreenCapture.CaptureWindow(getWindowByProcessName(name));
-                }
-                else return null;
+                Process process = Process.GetProcessesByName(name)[0];
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Maximized;
+                process.Start();
+               
+                return null;
                 //string assemblyName = name + ".exe";
                 //Assembly a = Assembly.LoadFrom(assemblyName);
+                
                 
             }
             catch (Exception ex)

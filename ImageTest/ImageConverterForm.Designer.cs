@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageConverterForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.screenshot = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -52,7 +53,6 @@
             this.picResize = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblResizeResolution = new System.Windows.Forms.Label();
-            this.screenshot = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
@@ -90,6 +90,16 @@
             this.panel1.Size = new System.Drawing.Size(1112, 49);
             this.panel1.TabIndex = 0;
             // 
+            // screenshot
+            // 
+            this.screenshot.Location = new System.Drawing.Point(309, 14);
+            this.screenshot.Name = "screenshot";
+            this.screenshot.Size = new System.Drawing.Size(75, 23);
+            this.screenshot.TabIndex = 7;
+            this.screenshot.Text = "ScreenShot";
+            this.screenshot.UseVisualStyleBackColor = true;
+            this.screenshot.Click += new System.EventHandler(this.screenShot_Click);
+            // 
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(189, 12);
@@ -122,6 +132,8 @@
             "Gray Luminosity Method",
             "Gray Single Channel Method",
             "Negative",
+            "to 1x1 Array in A4 page",
+            "to 1x1.5 Array in A4 page",
             "to 1.5x2 Array in A4 page",
             "to 3x2 Array in A4 page",
             "to 3x4 Array in A4 page",
@@ -342,16 +354,6 @@
             this.lblResizeResolution.Size = new System.Drawing.Size(28, 13);
             this.lblResizeResolution.TabIndex = 0;
             this.lblResizeResolution.Text = "pixel";
-            // 
-            // screenshot
-            // 
-            this.screenshot.Location = new System.Drawing.Point(309, 14);
-            this.screenshot.Name = "screenshot";
-            this.screenshot.Size = new System.Drawing.Size(75, 23);
-            this.screenshot.TabIndex = 7;
-            this.screenshot.Text = "ScreenShot";
-            this.screenshot.UseVisualStyleBackColor = true;
-            this.screenshot.Click += new System.EventHandler(this.screenShot_Click);
             // 
             // ImageConverterForm
             // 

@@ -125,6 +125,7 @@ namespace SNTImageConverter.Function
             return output;
 
         }
+       
         public static Image toNegative(this Image img)
         {
             Bitmap output = new Bitmap(img);
@@ -146,6 +147,19 @@ namespace SNTImageConverter.Function
             Marshal.Copy(temp, 0, data.Scan0, temp.Length);
             output.UnlockBits(data);
             return output;
+
+        }
+        public static Image CompressImageQuality(this Image img, int qty)
+        {
+            var jpgEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
+            EncoderParameters encoderParms = new EncoderParameters(1);
+            encoderParms.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, qty);
+            var ms = new MemoryStream();
+            img.Save(ms, jpgEncoder, encoderParms);
+            byte[] imgByte = ms.ToArray();
+            ms = new MemoryStream(imgByte);
+            Image outputImg = Image.FromStream(ms, true);
+            return outputImg;
 
         }
         public static Image addBorder(this Image img,int borderSize,Color borderColor)
