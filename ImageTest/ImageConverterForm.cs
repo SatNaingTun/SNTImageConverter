@@ -14,10 +14,13 @@ namespace SNTImageConverter
 {
     public partial class ImageConverterForm : Form
     {
+        Color oldColor=Color.Yellow;
         public ImageConverterForm()
         {
             InitializeComponent();
-          
+
+            
+           
            
         }
         public ImageConverterForm(string[] args)
@@ -178,6 +181,10 @@ namespace SNTImageConverter
                else if (comboBox1.SelectedItem.ToString().Equals("Negative"))
                 {
                     picResize.Image = img.toNegative();
+                }
+                else if (comboBox1.SelectedItem.ToString().Equals("Color Balance"))
+                {
+                    picResize.Image = img.ColorBalance(oldColor.B, oldColor.G, oldColor.R);
                 }
                 else if (comboBox1.SelectedItem.ToString().Equals("to 1x1 Array in A4 page"))
                 {
@@ -362,6 +369,21 @@ namespace SNTImageConverter
 
             
         }
+
+        private void picture_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {   PictureBox picBox=sender as PictureBox;
+            if (picBox.Image != null)
+            {
+                Bitmap myBitmap = new Bitmap(picBox.Image);
+                oldColor= myBitmap.GetPixel(e.X, e.Y);
+                MessageBox.Show("Old Color:"+oldColor);
+                
+            }
+            }
+        }
+
         
 
        

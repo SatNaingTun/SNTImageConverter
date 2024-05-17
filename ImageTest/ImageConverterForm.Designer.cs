@@ -132,6 +132,7 @@
             "Gray Luminosity Method",
             "Gray Single Channel Method",
             "Negative",
+            "Color Balance",
             "to 1x1 Array in A4 page",
             "to 1x1.5 Array in A4 page",
             "to 1.5x2 Array in A4 page",
@@ -295,6 +296,7 @@
             this.picOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picOriginal.TabIndex = 0;
             this.picOriginal.TabStop = false;
+            this.picOriginal.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picture_MouseUp);
             // 
             // panel2
             // 

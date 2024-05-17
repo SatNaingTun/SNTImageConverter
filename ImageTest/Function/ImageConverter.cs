@@ -149,6 +149,108 @@ namespace SNTImageConverter.Function
             return output;
 
         }
+        public static Image swapColor(this Image img,Color oldColor,Color newColor)
+        {
+            Bitmap output = new Bitmap(img);
+            //Rectangle ret = new Rectangle(0, 0, output.Width, output.Height);
+            //BitmapData data = output.LockBits(ret, System.Drawing.Imaging.ImageLockMode.ReadWrite, output.PixelFormat);
+            //int bpp = Bitmap.GetPixelFormatSize(output.PixelFormat) / 8;
+           
+            //byte[] temp = new byte[data.Stride * data.Height];
+            //Marshal.Copy(data.Scan0, temp, 0, temp.Length);
+
+            //for (int k = 0; k < temp.Length; k += bpp)
+            //{
+
+
+            //    temp[k] = (byte)(255 - temp[k]);
+            //    temp[k + 1] = (byte)(255 - temp[k + 1]);
+            //    temp[k + 2] = (byte)(255 - temp[k] + 2);
+
+            //}
+            //Marshal.Copy(temp, 0, data.Scan0, temp.Length);
+
+             for (int y = 0; y < output.Height; y++)
+            {
+                for (int x = 0; x < output.Width; x++)
+                {
+                    if (output.GetPixel(x, y) == oldColor)
+                    {
+                        output.SetPixel(x, y, newColor);
+                    }
+                }
+            }
+
+            //output.UnlockBits(data);
+            return output;
+
+        }
+
+        public static Image ColorBalance(this Image img, byte blueLevel,
+                                    byte greenLevel, byte redLevel)
+        {
+            Bitmap output = new Bitmap(img);
+            Rectangle rect = new Rectangle(0, 0, output.Width, output.Height);
+            BitmapData data = output.LockBits(rect,ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+
+            byte[] pixelBuffer = new byte[data.Stride * data.Height];
+
+
+            Marshal.Copy(data.Scan0, pixelBuffer, 0, pixelBuffer.Length);
+
+
+            //output.UnlockBits(data);
+
+
+            float blue = 0;
+            float green = 0;
+            float red = 0;
+
+
+            float blueLevelFloat = blueLevel;
+            float greenLevelFloat = greenLevel;
+            float redLevelFloat = redLevel;
+
+
+            for (int k = 0; k + 4 < pixelBuffer.Length; k += 4)
+            {
+                blue = 255.0f / blueLevelFloat * (float)pixelBuffer[k];
+                green = 255.0f / greenLevelFloat * (float)pixelBuffer[k + 1];
+                red = 255.0f / redLevelFloat * (float)pixelBuffer[k + 2];
+
+                if (blue > 255) { blue = 255; }
+                else if (blue < 0) { blue = 0; }
+
+                if (green > 255) { green = 255; }
+                else if (green < 0) { green = 0; }
+
+                if (red > 255) { red = 255; }
+                else if (red < 0) { red = 0; }
+
+                pixelBuffer[k] = (byte)blue;
+                pixelBuffer[k + 1] = (byte)green;
+                pixelBuffer[k + 2] = (byte)red;
+            }
+
+
+            //Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
+
+
+            //BitmapData resultData = resultBitmap.LockBits(new Rectangle(0, 0,
+            //                            resultBitmap.Width, resultBitmap.Height),
+            //                           ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+
+
+            //Marshal.Copy(pixelBuffer, 0, resultData.Scan0, pixelBuffer.Length);
+            //resultBitmap.UnlockBits(resultData);
+
+            Marshal.Copy(pixelBuffer, 0, data.Scan0, pixelBuffer.Length);
+            output.UnlockBits(data);
+
+            return output;
+        }
+       
         public static Image CompressImageQuality(this Image img, int qty)
         {
             var jpgEncoder = ImageCodecInfo.GetImageDecoders().First(c => c.FormatID == ImageFormat.Jpeg.Guid);
@@ -177,6 +279,7 @@ namespace SNTImageConverter.Function
             //return output;
             using (Graphics gfx = Graphics.FromImage(output))
             {
+               
                 using (Pen pen=new Pen(borderColor,borderSize))
                 {
                     gfx.DrawRectangle(pen,new Rectangle(0,0,img.Width,img.Height));
