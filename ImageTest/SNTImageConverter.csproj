@@ -37,6 +37,8 @@
     <ApplicationIcon>picture_photo_image_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Color Picker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Color Picker.Designer.cs">
+      <DependentUpon>Color Picker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Function\ImageCompare.cs" />
     <Compile Include="Function\MyWindow.cs" />
     <Compile Include="Function\ScreenCapture.cs" />
@@ -67,6 +75,9 @@
     <Compile Include="Function\ImageRotation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Color Picker.resx">
+      <DependentUpon>Color Picker.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageConverterForm.resx">
       <DependentUpon>ImageConverterForm.cs</DependentUpon>
     </EmbeddedResource>

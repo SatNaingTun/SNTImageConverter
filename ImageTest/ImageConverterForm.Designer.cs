@@ -48,11 +48,15 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.picOriginal = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblOriginalResolution = new System.Windows.Forms.Label();
+            this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.colorRect = new Microsoft.VisualBasic.PowerPacks.RectangleShape();
             this.panel5 = new System.Windows.Forms.Panel();
             this.picResize = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblResizeResolution = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth)).BeginInit();
@@ -272,7 +276,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel5);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Size = new System.Drawing.Size(1112, 252);
+            this.splitContainer1.Size = new System.Drawing.Size(1112, 281);
             this.splitContainer1.SplitterDistance = 626;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -283,7 +287,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(626, 226);
+            this.panel4.Size = new System.Drawing.Size(626, 255);
             this.panel4.TabIndex = 2;
             // 
             // picOriginal
@@ -292,20 +296,34 @@
             this.picOriginal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picOriginal.Location = new System.Drawing.Point(0, 0);
             this.picOriginal.Name = "picOriginal";
-            this.picOriginal.Size = new System.Drawing.Size(626, 226);
+            this.picOriginal.Size = new System.Drawing.Size(626, 255);
             this.picOriginal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picOriginal.TabIndex = 0;
             this.picOriginal.TabStop = false;
-            this.picOriginal.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picture_MouseUp);
+            this.picOriginal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picture_MouseDown);
+            this.picOriginal.MouseEnter += new System.EventHandler(this.picOriginal_MouseEnter);
+            this.picOriginal.MouseLeave += new System.EventHandler(this.picOriginal_MouseLeave);
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lblOriginalResolution);
+            this.panel2.Controls.Add(this.shapeContainer1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 226);
+            this.panel2.Location = new System.Drawing.Point(0, 255);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(626, 26);
             this.panel2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(557, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "color";
             // 
             // lblOriginalResolution
             // 
@@ -317,6 +335,26 @@
             this.lblOriginalResolution.TabIndex = 0;
             this.lblOriginalResolution.Text = "pixel";
             // 
+            // shapeContainer1
+            // 
+            this.shapeContainer1.Location = new System.Drawing.Point(0, 0);
+            this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
+            this.shapeContainer1.Name = "shapeContainer1";
+            this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.colorRect});
+            this.shapeContainer1.Size = new System.Drawing.Size(626, 26);
+            this.shapeContainer1.TabIndex = 1;
+            this.shapeContainer1.TabStop = false;
+            // 
+            // colorRect
+            // 
+            this.colorRect.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.colorRect.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
+            this.colorRect.Location = new System.Drawing.Point(593, 4);
+            this.colorRect.Name = "colorRect";
+            this.colorRect.Size = new System.Drawing.Size(21, 18);
+            this.colorRect.Click += new System.EventHandler(this.colorRect_Click);
+            // 
             // panel5
             // 
             this.panel5.AutoScroll = true;
@@ -324,7 +362,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(482, 226);
+            this.panel5.Size = new System.Drawing.Size(482, 255);
             this.panel5.TabIndex = 2;
             // 
             // picResize
@@ -333,7 +371,7 @@
             this.picResize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picResize.Location = new System.Drawing.Point(0, 0);
             this.picResize.Name = "picResize";
-            this.picResize.Size = new System.Drawing.Size(482, 226);
+            this.picResize.Size = new System.Drawing.Size(482, 255);
             this.picResize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picResize.TabIndex = 0;
             this.picResize.TabStop = false;
@@ -342,7 +380,7 @@
             // 
             this.panel3.Controls.Add(this.lblResizeResolution);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 226);
+            this.panel3.Location = new System.Drawing.Point(0, 255);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(482, 26);
             this.panel3.TabIndex = 1;
@@ -357,11 +395,20 @@
             this.lblResizeResolution.TabIndex = 0;
             this.lblResizeResolution.Text = "pixel";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(321, 10);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "label4";
+            // 
             // ImageConverterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 301);
+            this.ClientSize = new System.Drawing.Size(1112, 330);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -413,6 +460,10 @@
         private System.Windows.Forms.PictureBox picOriginal;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button screenshot;
+        private System.Windows.Forms.Label label3;
+        private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
+        private Microsoft.VisualBasic.PowerPacks.RectangleShape colorRect;
+        private System.Windows.Forms.Label label4;
     }
 }
 

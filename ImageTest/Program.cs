@@ -23,6 +23,7 @@ namespace SNTImageConverter
             {
                 Application.Run(new ImageConverterForm(args));
             }
+            //Application.Run(new Color_Picker());
         }
     }
 }

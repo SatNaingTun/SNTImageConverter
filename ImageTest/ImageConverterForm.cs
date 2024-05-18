@@ -9,15 +9,20 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
 using SNTImageConverter.Function;
+using System.Threading;
+
+
 
 namespace SNTImageConverter
 {
     public partial class ImageConverterForm : Form
     {
-        Color oldColor=Color.Yellow;
+        //Color oldColor=Color.Yellow;
+        bool colorPick = false;
         public ImageConverterForm()
         {
             InitializeComponent();
+            //colorRect.FillColor = oldColor;
 
             
            
@@ -26,6 +31,8 @@ namespace SNTImageConverter
         public ImageConverterForm(string[] args)
         {
             InitializeComponent();
+            
+            //colorRect.FillColor = oldColor;
             foreach (string fileName in args)
             {
                 if (isValidFile(fileName))
@@ -184,7 +191,7 @@ namespace SNTImageConverter
                 }
                 else if (comboBox1.SelectedItem.ToString().Equals("Color Balance"))
                 {
-                    picResize.Image = img.ColorBalance(oldColor.B, oldColor.G, oldColor.R);
+                    picResize.Image = img.ColorBalance(colorRect.FillColor.B, colorRect.FillColor.G, colorRect.FillColor.R);
                 }
                 else if (comboBox1.SelectedItem.ToString().Equals("to 1x1 Array in A4 page"))
                 {
@@ -370,19 +377,65 @@ namespace SNTImageConverter
             
         }
 
-        private void picture_MouseUp(object sender, MouseEventArgs e)
+        private void picture_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {   PictureBox picBox=sender as PictureBox;
-            if (picBox.Image != null)
+            PictureBox picBox = sender as PictureBox;
+            if (e.Button == MouseButtons.Left && picBox.Cursor==Cursors.Cross)
             {
+                
+                if (picBox.Image != null)
+                {
                 Bitmap myBitmap = new Bitmap(picBox.Image);
-                oldColor= myBitmap.GetPixel(e.X, e.Y);
-                MessageBox.Show("Old Color:"+oldColor);
+
+                if(e.X<picBox.Image.Width && e.Y<picBox.Image.Height)
+                  colorRect.FillColor= myBitmap.GetPixel(e.X, e.Y);
+                //MessageBox.Show("Old Color:"+oldColor);
+               
+                
+                }
                 
             }
+        }
+        Color GetColorAt(Point location)
+        {
+            using (Bitmap pixelContainer = new Bitmap(1, 1))
+            {
+                using (Graphics graphics = Graphics.FromImage(pixelContainer))
+                {
+                    graphics.CopyFromScreen(location, Point.Empty, pixelContainer.Size);
+                }
+                return pixelContainer.GetPixel(0, 0);
             }
         }
+
+        private void colorRect_Click(object sender, EventArgs e)
+        {
+            //ColorDialog cldlg = new ColorDialog();
+            //if (cldlg.ShowDialog() == DialogResult.OK)
+            //{
+            //    colorRect.FillColor = cldlg.Color;
+            //}
+            colorPick = true;
+            
+            //Cursor = Cursors.Cross;
+
+            
+           
+        }
+
+        private void picOriginal_MouseEnter(object sender, EventArgs e)
+        {
+            picOriginal.Cursor = Cursors.Cross;
+        }
+
+        private void picOriginal_MouseLeave(object sender, EventArgs e)
+        {
+            picOriginal.Cursor = Cursors.Default;
+        }
+
+       
+
+      
 
         
 

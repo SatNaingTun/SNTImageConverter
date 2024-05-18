@@ -14,3 +14,4 @@ E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.cspr
 E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.exe
 E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.pdb
 E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.csprojResolveAssemblyReference.cache
+E:\vsprojects\SNT_Image_Converter\ImageTest\obj\x86\Debug\SNTImageConverter.Color_Picker.resources
